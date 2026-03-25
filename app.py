@@ -7,6 +7,26 @@ import requests
 from PIL import Image
 from PIL.ExifTags import TAGS
 import math
+import os
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+app = Flask(__name__)
+# This is the magic line that fixes the "Failed to fetch" block!
+CORS(app, resources={r"/*": {"origins": "*"}}) 
+
+# ... [Keep all your other detection functions here] ...
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"status": "Authentix Backend is running!"})
+
+# ... [Keep your /analyze route here] ...
+
+if __name__ == '__main__':
+    # Railway assigns a specific port, this makes sure your app uses it
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port, debug=False)
 
 # -----------------------------------------------
 # TruthLens Backend — Production Ready
