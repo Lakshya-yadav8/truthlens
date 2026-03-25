@@ -1,9 +1,20 @@
+
 import os, hashlib, datetime, requests, math
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from PIL import Image
 from PIL.ExifTags import TAGS
 
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({
+        "status": "TruthLens Backend is LIVE",
+        "message": "Railway is successfully hosting your forensic tools!"
+    })
+    
 app = Flask(__name__)
 CORS(app) # Required so Vercel can talk to Railway
 
